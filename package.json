@@ -1,0 +1,23 @@
+{
+  "name": "browser-deeplink",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "src/index",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint ./src",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "eslint": "^7.10.0",
+    "eslint-config-xxx": "^1.0.0",
+    "rollup": "^2.29.0"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "homepage": "https://bravecow.github.io/browser-deeplink/",
+  "repository": "bravecow/browser-deeplink"
+}
