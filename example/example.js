@@ -1,4 +1,4 @@
-import { browserDeeplink } from '../src';
+import { browserDeeplink } from '../src/index.js';
 
 browserDeeplink('tg://').then(() => {
   console.log('installed');
