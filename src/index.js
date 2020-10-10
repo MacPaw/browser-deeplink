@@ -2,6 +2,10 @@ function injectIframe(src) {
   const iframe = document.createElement('iframe');
   iframe.src = src;
   document.body.appendChild(iframe);
+  iframe.style.width = '1px';
+  iframe.style.height = '1px';
+  iframe.style.position = 'fixed';
+  iframe.style.left = '-1px';
   return iframe;
 }
 
@@ -22,7 +26,9 @@ export function browserDeeplink(appLink, options = {}) {
     }, WAIT_TIMEOUT);
 
     function windowBlurListener() {
+      window.removeEventListener('blur', windowBlurListener);
       clearTimeout(timeout);
+      ejectIframe(iframe);
       resolve();
     }
 
