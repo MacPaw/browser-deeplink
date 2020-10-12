@@ -1,5 +1,5 @@
 {
-  "name": "browser-deeplink",
+  "name": "@macpaw/browser-deeplink",
   "version": "0.0.1",
   "main": "dist/index.js",
   "module": "src/index",
@@ -18,6 +18,6 @@
     "dist",
     "src"
   ],
-  "homepage": "https://bravecow.github.io/browser-deeplink/",
-  "repository": "bravecow/browser-deeplink"
+  "homepage": "https://macpaw.github.io/browser-deeplink/example",
+  "repository": "macpaw/browser-deeplink"
 }
