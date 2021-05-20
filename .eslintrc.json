@@ -1,3 +1,6 @@
 {
-  "extends": "@macpaw/eslint-config-base"
+  "extends": "@macpaw/eslint-config-base",
+  "rules": {
+    "import/prefer-default-export": 0
+  }
 }

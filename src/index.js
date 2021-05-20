@@ -6,6 +6,7 @@ function injectIframe(src) {
   iframe.style.height = '1px';
   iframe.style.position = 'fixed';
   iframe.style.left = '-1px';
+
   return iframe;
 }
 
