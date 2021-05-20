@@ -1,6 +1,6 @@
 {
   "name": "@macpaw/browser-deeplink",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "module": "src/index",
   "license": "MIT",
@@ -9,10 +9,9 @@
     "build": "rollup -c"
   },
   "devDependencies": {
+    "@macpaw/eslint-config-base": "latest",
     "@rollup/plugin-buble": "^0.21.3",
-    "eslint": "^7.10.0",
-    "eslint-config-xxx": "^1.0.0",
-    "rollup": "^2.29.0"
+    "rollup": "^2.48.0"
   },
   "files": [
     "dist",
