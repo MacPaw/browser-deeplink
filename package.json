@@ -12,7 +12,7 @@
     "@macpaw/eslint-config-base": "latest",
     "@rollup/plugin-buble": "^0.21.3",
     "eslint": "^7.32.0",
-    "rollup": "^2.48.0"
+    "rollup": "^2.57.0"
   },
   "files": [
     "dist",
