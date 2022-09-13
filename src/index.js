@@ -14,9 +14,10 @@ function ejectIframe(iframe) {
   document.body.removeChild(iframe);
 }
 
-export function browserDeeplink(appLink, options = {}) {
+export function browserDeeplink(appLink, options = {
+  waitTimeout: 200,
+}) {
   const { waitTimeout } = options;
-  const WAIT_TIMEOUT = typeof (waitTimeout) === 'number' ? options.wait : 200;
 
   return new Promise(((resolve, reject) => {
     const iframe = injectIframe(appLink);
@@ -24,7 +25,7 @@ export function browserDeeplink(appLink, options = {}) {
       window.removeEventListener('blur', windowBlurListener);
       ejectIframe(iframe);
       reject(Error(`Can't open ${appLink}`));
-    }, WAIT_TIMEOUT);
+    }, waitTimeout);
 
     function windowBlurListener() {
       window.removeEventListener('blur', windowBlurListener);
