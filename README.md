@@ -7,9 +7,9 @@ import { browserDeeplink } from '@macpaw/browser-deeplink';
 
 browserDeeplink('cleanmymac://signin?email=1%401.com&src=dashboard')
   .then(() => {
-    console.log('application is requested to open')
+    console.log('application is requested to open');
   })
   .catch(() => {
-    console.log('application is not installed')
+    console.log('application is not installed');
   });
 ```
