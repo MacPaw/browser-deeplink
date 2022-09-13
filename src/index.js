@@ -15,7 +15,7 @@ function ejectIframe(iframe) {
 }
 
 export function browserDeeplink(appLink, options = {
-  waitTimeout: 200
+  waitTimeout: 200,
 }) {
   const { waitTimeout } = options;
 
