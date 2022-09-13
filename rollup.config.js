@@ -1,6 +1,6 @@
 import buble from '@rollup/plugin-buble';
 
-export default {
+const config = {
   input: './src/index.js',
   output: {
     file: './dist/index.js',
@@ -9,3 +9,5 @@ export default {
   },
   plugins: [buble()],
 };
+
+export default config;
