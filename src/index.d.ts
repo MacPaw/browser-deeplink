@@ -1,5 +1,7 @@
 declare module '@macpaw/browser-deeplink' {
-  export function browserDeeplink(appLink : string, options?: {
+  type Options = {
     waitTimeout?: number
-  }): Promise<void>;
+  }
+
+  export function browserDeeplink(appLink: string, options?: Options): Promise<void>;
 }
