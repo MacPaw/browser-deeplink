@@ -6,9 +6,12 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./src",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "changes:release": "changeset tag",
+    "changes:add": "changeset add"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "@macpaw/eslint-config-base": "latest",
     "@rollup/plugin-buble": "^0.21.3",
     "eslint": "^7.32.0",
