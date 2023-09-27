@@ -1,5 +1,6 @@
 const injectIframe = (src) => {
   const iframe = document.createElement('iframe');
+
   iframe.src = src;
   document.body.appendChild(iframe);
   iframe.style.width = '1px';
