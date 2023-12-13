@@ -1,5 +1,6 @@
-function injectIframe(src) {
+const injectIframe = (src) => {
   const iframe = document.createElement('iframe');
+
   iframe.src = src;
   document.body.appendChild(iframe);
   iframe.style.width = '1px';
@@ -8,15 +9,15 @@ function injectIframe(src) {
   iframe.style.left = '-1px';
 
   return iframe;
-}
+};
 
-function ejectIframe(iframe) {
+const ejectIframe = (iframe) => {
   document.body.removeChild(iframe);
-}
+};
 
-export function browserDeeplink(appLink, options = {}) {
+export const browserDeeplink = (appLink, options = {}) => {
   const defaults = { waitTimeout: 200 };
-  options = { ...defaults, options };
+  const currentOptions = { ...defaults, ...options };
 
   return new Promise(((resolve, reject) => {
     const iframe = injectIframe(appLink);
@@ -24,8 +25,9 @@ export function browserDeeplink(appLink, options = {}) {
       window.removeEventListener('blur', windowBlurListener);
       ejectIframe(iframe);
       reject(Error(`Can't open ${appLink}`));
-    }, options.waitTimeout);
+    }, currentOptions.waitTimeout);
 
+    // eslint-disable-next-line func-style
     function windowBlurListener() {
       window.removeEventListener('blur', windowBlurListener);
       clearTimeout(timeout);
@@ -35,4 +37,4 @@ export function browserDeeplink(appLink, options = {}) {
 
     window.addEventListener('blur', windowBlurListener);
   }));
-}
+};
