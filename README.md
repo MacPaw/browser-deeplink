@@ -35,7 +35,7 @@ npm run changes:add
 ### 2. Releasing and Publishing
 
 Steps to make a release:
-- To initiate a release, create a pull request from `master`` to release with the title Release.
+- To initiate a release, create a pull request from `master` to release with the title Release.
 - Ensure all CI checks pass successfully.
 - Once CI checks are green and you have at least one approval, merge the pull request.
 - Post-merge, the release GitHub Actions will trigger and create an "update versions" pull request to the `release` branch.
