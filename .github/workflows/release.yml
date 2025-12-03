@@ -10,6 +10,9 @@ jobs:
     name: Create release
     runs-on: ubuntu-latest
     continue-on-error: false
+    permissions:
+      contents: write
+      pull-requests: write
     outputs:
       releaseReady: ${{ steps.releaseOutputs.outputs.releaseReady }}
     steps:
@@ -39,6 +42,8 @@ jobs:
     name: Prepare packages
     runs-on: ubuntu-latest
     continue-on-error: false
+    permissions:
+      contents: read
     needs: release
     if: ${{ needs.release.outputs.releaseReady == 'true' }}
     steps:
@@ -82,6 +87,9 @@ jobs:
     needs: prepare
     runs-on: ubuntu-latest
     continue-on-error: false
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Cancel previous jobs
         uses: styfle/cancel-workflow-action@0.11.0
