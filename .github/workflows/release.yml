@@ -81,6 +81,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
           artifact-name: 'package-artifact'
           scope: '@macpaw'
+          use-public-flag: true
 
   publish-github:
     name: Publish to Github Registry

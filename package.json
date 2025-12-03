@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "build": "rollup -c",
-    "changes:release": "changeset publish",
+    "changes:release": "changeset tag",
     "changes:add": "changeset add"
   },
   "devDependencies": {
