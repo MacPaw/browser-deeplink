@@ -29,6 +29,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           release-command: 'changes:release'
           gpg-key-base64: ${{ secrets.CI_GITHUB_GPG_KEY_BASE64 }}
+          gpg-key-signing: ${{ secrets.CI_GITHUB_GPG_KEY_SIGNING }}
 
       - name: Generate outputs
         id: releaseOutputs

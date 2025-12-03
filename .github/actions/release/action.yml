@@ -32,6 +32,9 @@ inputs:
   gpg-key-base64:
     description: 'The base64 encoded GPG key to use'
     required: true
+  gpg-key-signing:
+    description: 'The GPG signing key ID'
+    required: true
 outputs:
   release-ready:
     description: "Random number"
@@ -43,6 +46,7 @@ runs:
       uses: ./.github/actions/github-config
       with:
         gpg-key-base64: ${{ inputs.gpg-key-base64 }}
+        gpg-key-signing: ${{ inputs.gpg-key-signing }}
 
     - name: Prepare node
       uses: ./.github/actions/prepare-node
