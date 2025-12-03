@@ -2,38 +2,38 @@ name: "Release package action"
 description: "Matches changesets if they are in the release branch, creates a release PR with version updates, otherwise if there are versions update, it will create a release."
 inputs:
   node-version:
-    description: 'The version of Node.js to use'
+    description: "The version of Node.js to use"
     required: true
   node-cache:
-    description: 'The cache key to use for caching Node.js'
+    description: "The cache key to use for caching Node.js"
     required: false
   package-manager:
-    description: 'The package manager to use'
+    description: "The package manager to use"
     required: false
-    default: 'npm'
+    default: "npm"
   registry-url:
-    description: 'The registry URL to use'
+    description: "The registry URL to use"
     required: false
   release-pr-title:
-    description: 'The title of the release PR'
+    description: "The title of the release PR"
     required: false
-    default: 'ci(changesets): :package: version packages'
+    default: "ci(changesets): :package: version packages"
   release-commit-message:
-    description: 'The commit message of the release PR'
+    description: "The commit message of the release PR"
     required: false
-    default: 'ci(changesets): version packages'
+    default: "ci(changesets): version packages"
   github-token:
-    description: 'The github token to use'
+    description: "The github token to use"
     required: true
-  release-command: 
-    description: 'The command to use to release'
+  release-command:
+    description: "The command to use to release"
     required: false
-    default: 'release'
+    default: "release"
   gpg-key-base64:
-    description: 'The base64 encoded GPG key to use'
+    description: "The base64 encoded GPG key to use"
     required: true
   gpg-key-signing:
-    description: 'The GPG signing key ID'
+    description: "The GPG signing key ID"
     required: true
 outputs:
   release-ready:
@@ -41,7 +41,7 @@ outputs:
     value: ${{ steps.output-generator.outputs.release-ready }}
 runs:
   using: composite
-  steps:    
+  steps:
     - name: Configure git user
       uses: ./.github/actions/github-config
       with:

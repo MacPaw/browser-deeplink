@@ -10,6 +10,9 @@ jobs:
     name: Create release
     runs-on: ubuntu-latest
     continue-on-error: false
+    permissions:
+      contents: write      # Required to create release branches and tags
+      pull-requests: write # Required to create release PRs
     outputs:
       releaseReady: ${{ steps.releaseOutputs.outputs.releaseReady }}
     steps:
@@ -24,10 +27,10 @@ jobs:
         id: release
         with:
           node-version: 16
-          release-pr-title: 'chore(release): :package: version update for packages'
-          release-commit-message: 'chore(release): version update for packages'
+          release-pr-title: "chore(release): :package: version update for packages"
+          release-commit-message: "chore(release): version update for packages"
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          release-command: 'changes:release'
+          release-command: "changes:release"
           gpg-key-base64: ${{ secrets.CI_GITHUB_GPG_KEY_BASE64 }}
           gpg-key-signing: ${{ secrets.CI_GITHUB_GPG_KEY_SIGNING }}
 
@@ -53,7 +56,7 @@ jobs:
         uses: ./.github/actions/prepare-packages
         with:
           node-version: 16
-          build-command: 'build'
+          build-command: "build"
 
   publish-npm:
     name: Publish to NPM Registry
@@ -61,8 +64,8 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: false
     permissions:
-      id-token: write  # Required for OIDC/Trusted Publishing
-      contents: read   # Required to checkout code
+      id-token: write # Required for OIDC/Trusted Publishing
+      contents: read # Required to checkout code
     steps:
       - name: Cancel previous jobs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -74,9 +77,9 @@ jobs:
         uses: ./.github/actions/publish
         with:
           node-version: 16
-          registry-url: 'https://registry.npmjs.org/'
-          artifact-name: 'package-artifact'
-          scope: '@macpaw'
+          registry-url: "https://registry.npmjs.org/"
+          artifact-name: "package-artifact"
+          scope: "@macpaw"
 
   publish-github:
     name: Publish to Github Registry
@@ -86,7 +89,7 @@ jobs:
     steps:
       - name: Cancel previous jobs
         uses: styfle/cancel-workflow-action@0.11.0
-      
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -95,6 +98,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-          artifact-name: 'package-artifact'
-          scope: '@macpaw'
+          artifact-name: "package-artifact"
+          scope: "@macpaw"
           auth-token: ${{ secrets.GITHUB_TOKEN }}
