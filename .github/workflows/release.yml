@@ -59,6 +59,9 @@ jobs:
     needs: prepare
     runs-on: ubuntu-latest
     continue-on-error: false
+    permissions:
+      id-token: write  # Required for OIDC/Trusted Publishing
+      contents: read   # Required to checkout code
     steps:
       - name: Cancel previous jobs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -73,7 +76,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
           artifact-name: 'package-artifact'
           scope: '@macpaw'
-          auth-token: ${{ secrets.NPM_TOKEN }}
 
   publish-github:
     name: Publish to Github Registry
