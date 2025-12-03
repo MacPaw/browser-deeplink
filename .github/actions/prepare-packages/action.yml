@@ -2,30 +2,30 @@ name: "Prepare packages"
 description: "Builds and packs the packages for release"
 inputs:
   node-version:
-    description: 'The version of Node.js to use'
+    description: "The version of Node.js to use"
     required: true
   node-cache:
-    description: 'The cache key to use for caching Node.js'
+    description: "The cache key to use for caching Node.js"
     required: false
   package-manager:
-    description: 'The package manager to use'
+    description: "The package manager to use"
     required: false
-    default: 'npm'
+    default: "npm"
   registry-url:
-    description: 'The registry URL to use'
+    description: "The registry URL to use"
     required: false
   artifact-name:
-    description: 'The name of the artifact to upload'
+    description: "The name of the artifact to upload"
     required: false
-    default: 'package-artifact'
+    default: "package-artifact"
   artifact-retention-days:
-    description: 'The number of days to retain the artifact'
+    description: "The number of days to retain the artifact"
     required: false
     default: 1
   build-command:
-    description: 'The command to use to build the package'
+    description: "The command to use to build the package"
     required: false
-    default: 'build'
+    default: "build"
 
 runs:
   using: composite
@@ -42,7 +42,7 @@ runs:
     - name: Install dependencies
       shell: bash
       run: ${{ inputs.package-manager }} install
-    
+
     - name: Build
       shell: bash
       run: |
@@ -51,13 +51,13 @@ runs:
         else
           ${{ inputs.package-manager }} ${{ inputs.build-command }}
         fi
-          
+
     - name: Pack artifact
       shell: bash
-      run:  tar -czf /tmp/artifact.tar.gz .
+      run: tar -czf /tmp/artifact.tar.gz .
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ inputs.artifact-name }}
         path: /tmp/artifact.tar.gz

@@ -7,7 +7,11 @@ const config = {
     format: 'cjs',
     indent: false
   },
-  plugins: [buble()],
+  plugins: [
+    buble({
+      objectAssign: 'Object.assign',
+    }),
+  ],
 };
 
 export default config;

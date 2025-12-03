@@ -1,6 +1,6 @@
 {
   "name": "@macpaw/browser-deeplink",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "main": "dist/index.js",
   "module": "src/index",
   "license": "MIT",
@@ -23,5 +23,5 @@
   ],
   "types": "src/index.d.ts",
   "homepage": "https://macpaw.github.io/browser-deeplink/example",
-  "repository": "macpaw/browser-deeplink"
+  "repository": "MacPaw/browser-deeplink"
 }
