@@ -1,8 +1,11 @@
-name: 'github config'
-description: 'Update GIT config with signing key'
+name: "github config"
+description: "Update GIT config with signing key"
 inputs:
   gpg-key-base64:
-    description: 'Base64 GPG key'
+    description: "Base64 GPG key"
+    required: true
+  gpg-key-signing:
+    description: "Git signing key"
     required: true
 runs:
   using: "composite"
@@ -12,7 +15,7 @@ runs:
         echo ${{ inputs.gpg-key-base64 }} | base64 -d > ${GITHUB_WORKSPACE}/.gpg/private.key
         gpg --import ${GITHUB_WORKSPACE}/.gpg/private.key
 
-        git config --global user.signingkey <user-signingkey>
+        git config --global user.signingkey ${{ inputs.gpg-key-signing }}
         git config --global commit.gpgsign true
         git config user.name ci-macpaw
         git config user.email admin+ci-gh@macpaw.com
