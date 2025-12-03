@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: false
     permissions:
-      contents: write      # Required to create release branches and tags
+      contents: write # Required to create release branches and tags
       pull-requests: write # Required to create release PRs
     outputs:
       releaseReady: ${{ steps.releaseOutputs.outputs.releaseReady }}
