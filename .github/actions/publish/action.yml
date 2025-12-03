@@ -2,31 +2,31 @@ name: "Publish package to registry"
 description: "Publishes the package to the registry"
 inputs:
   node-version:
-    description: 'The version of Node.js to use'
+    description: "The version of Node.js to use"
     required: true
   node-cache:
-    description: 'The cache key to use for caching Node.js'
+    description: "The cache key to use for caching Node.js"
     required: false
   package-manager:
-    description: 'The package manager to use'
+    description: "The package manager to use"
     required: false
-    default: 'npm'
+    default: "npm"
   registry-url:
-    description: 'The registry URL to use'
+    description: "The registry URL to use"
     required: false
   artifact-name:
-    description: 'The name of the artifact to download'
+    description: "The name of the artifact to download"
     required: false
-    default: 'package-artifact'
+    default: "package-artifact"
   scope:
-    description: 'The scope to use'
+    description: "The scope to use"
     required: false
-    default: ''
+    default: ""
   auth-token:
-    description: 'The auth token to use'
-    required: true
+    description: "The auth token to use"
+    required: false
   use-public-flag:
-    description: 'Whether to use the public flag'
+    description: "Whether to use the public flag"
     required: false
     default: false
 
@@ -51,7 +51,13 @@ runs:
       shell: bash
       run: tar xf artifact.tar.gz
 
-    - name: Publish
+    - name: Ensure npm supports trusted publishing
+      if: ${{ inputs.auth-token == '' }}
+      shell: bash
+      run: npm install -g npm@latest
+
+    - name: Publish with token
+      if: ${{ inputs.auth-token != '' }}
       shell: bash
       run: |
         if [ "${{ inputs.use-public-flag }}" = "true" ]; then
@@ -61,3 +67,13 @@ runs:
         fi
       env:
         NODE_AUTH_TOKEN: ${{ inputs.auth-token }}
+
+    - name: Publish with OIDC
+      if: ${{ inputs.auth-token == '' }}
+      shell: bash
+      run: |
+        if [ "${{ inputs.use-public-flag }}" = "true" ]; then
+          npm publish --access public
+        else
+          npm publish
+        fi
