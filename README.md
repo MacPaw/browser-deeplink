@@ -1,5 +1,7 @@
 # browser-deeplink
 
+![Browser Deeplink](.github/header.png)
+
 Tiny function to open application from browser. Resolves if the application was requested to open.
 
 ```js
